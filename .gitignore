@@ -1,0 +1,10 @@
+
+*.class
+
+.idea/modules.xml
+
+.idea/uiDesigner.xml
+
+.idea/workspace.xml
+
+.idea/misc.xml
