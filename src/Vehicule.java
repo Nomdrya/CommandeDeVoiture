@@ -2,11 +2,12 @@
  *
  * @author Raymond
  */
-public class Voiture {
+public class Vehicule {
     private String fabricant;
     private int chevaux,km,annee;
     private double prix;
     private Personne proprietaire;
+    private boolean neuf;
 
     public Personne getProprietaire() {
         return proprietaire;
@@ -16,18 +17,13 @@ public class Voiture {
         this.proprietaire = proprietaire;
     }
 
-    public Voiture (String fabricant,int chevaux, int annee){
-        this.fabricant=fabricant;
-        this.chevaux=chevaux;
-        this.annee=annee;
-
-    }
-    public Voiture (String fabricant,int chevaux, int annee,int km,double prix){
+    public Vehicule(String fabricant, int chevaux, int annee, int km, double prix, boolean neuf){
         this.fabricant=fabricant;
         this.chevaux=chevaux;
         this.annee=annee;
         this.km=km;
         this.prix=prix;
+        this.neuf=neuf;
 
     }
     public double getPrix(){
@@ -40,13 +36,13 @@ public class Voiture {
 
     @Override
     public String toString() {
-        return "Voiture{" +
+        return
                 "fabricant='" + fabricant + "'" +
                 ", chevaux=" + chevaux +
                 ", km=" + km +
                 ", annee=" + annee +
                 ", prix=" + prix +
-                '}';
+                ", neuf=" + neuf;
     }
 }
 

@@ -11,36 +11,36 @@ import java.util.ArrayList;
  */
 public class Personne {
     private String nomComplet;
-    private ArrayList<Voiture> voitures;
+    private ArrayList<Vehicule> vehicules;
     private double budget;
 
     public Personne(String nomComplet, double budget) {
         this.nomComplet = nomComplet;
         this.budget = budget;
-        this.voitures = new ArrayList<Voiture>();
+        this.vehicules = new ArrayList<Vehicule>();
     }
 
-    public void acheterVoiture(Voiture voiture) throws Exception {
+    public void acheterVehicule(Vehicule vehicule) throws Exception {
 
-        if (budget < voiture.getPrix())
-            throw new Exception(this + ", budget insuffisant, " + voiture);
+        if (budget < vehicule.getPrix())
+            throw new Exception(this + ", budget insuffisant, " + vehicule);
 
-        if (voiture.getProprietaire() == null) {
-            voitures.add(voiture);
-            budget = budget - voiture.getPrix();
-            voiture.setProprietaire(this);
+        if (vehicule.getProprietaire() == null) {
+            vehicules.add(vehicule);
+            budget = budget - vehicule.getPrix();
+            vehicule.setProprietaire(this);
         } else
-            throw new Exception(voiture + " a un propriétaire: " + voiture.getProprietaire().nomComplet);
+            throw new Exception(vehicule + " a un propriétaire: " + vehicule.getProprietaire().nomComplet);
     }
 
-    public void vendreVoiture(Voiture voiture) throws Exception {
-        if (voitures.contains(voiture)) {
-            voiture.setProprietaire(null);
+    public void vendreVehicule(Vehicule vehicule) throws Exception {
+        if (vehicules.contains(vehicule)) {
+            vehicule.setProprietaire(null);
 
-            voitures.remove(voiture);
-            budget = budget + voiture.getPrix();
+            vehicules.remove(vehicule);
+            budget = budget + vehicule.getPrix();
         } else
-        throw new Exception(this + ", pas proprietaire, " + voiture);
+        throw new Exception(this + ", pas proprietaire, " + vehicule);
 
     }
 
@@ -53,10 +53,10 @@ public class Personne {
                 '}';
     }
 
-    public void afficherVoitures() {
-        System.out.println(nomComplet + " a les voitures: ");
-        for (int i = 0; i < voitures.size(); i++) {
-            System.out.println("- " + voitures.get(i));
+    public void afficherVehicules() {
+        System.out.println(nomComplet + " a les vehicules: ");
+        for (int i = 0; i < vehicules.size(); i++) {
+            System.out.println("- " + vehicules.get(i));
         }
     }
 
