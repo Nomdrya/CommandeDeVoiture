@@ -20,6 +20,10 @@ public class Personne {
         this.vehicules = new ArrayList<Vehicule>();
     }
 
+    public ArrayList<Vehicule> getVehicules() {
+        return vehicules;
+    }
+
     public void acheterVehicule(Vehicule vehicule) throws Exception {
 
         if (budget < vehicule.getPrix())
@@ -33,7 +37,8 @@ public class Personne {
             throw new Exception(vehicule + " a un propriétaire: " + vehicule.getProprietaire().nomComplet);
     }
 
-    public void vendreVehicule(Vehicule vehicule) throws Exception {
+    public void vendreVehicule(int indice ) throws Exception {
+        Vehicule vehicule = vehicules.get(indice);
         if (vehicules.contains(vehicule)) {
             vehicule.setProprietaire(null);
 

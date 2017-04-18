@@ -5,8 +5,6 @@
  * - Creer toString pour Camion et Voiture
  */
 
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -70,6 +68,9 @@ public class CommandedeVehicule {
         System.out.println("2: afficher les clients");
         System.out.println("3: créer vehicule");
         System.out.println("4: afficher vehicule");
+        System.out.println("5: acheter vehicule");
+        System.out.println("6: vendre vehicule");
+
     }
 
     public int lireChoix() {
@@ -94,13 +95,32 @@ public class CommandedeVehicule {
                 creerVehicule();
                 break;
             case 4:
-                afficherVehicule();
+                afficherVehicule(this.vehicules);
                 break;
             case 5:
-                try{
+                try {
+                    afficherClients();
+                    int numClients=scanner.nextInt();
+                    afficherVehicule(this.vehicules);
+                    int numVehicule=scanner.nextInt();
+                    clients.get(numClients).acheterVehicule(vehicules.get(numVehicule));
+
                     // appel à acheterVehicule
-                }catch (Exception e) {
-                    System.out.println(e.getMessage());
+
+                } catch (Exception e) {
+                    System.out.println("Erreur, l'achat n'a pas pu être effectué");
+                }
+                break;
+            case 6:
+                try {
+                    afficherClients();
+                    int numClients=scanner.nextInt();
+                    afficherVehicule(clients.get(numClients).getVehicules());
+                    int numVehicule=scanner.nextInt();
+                    clients.get(numClients).vendreVehicule(numVehicule);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
         }
     }
@@ -115,14 +135,15 @@ public class CommandedeVehicule {
     }
 
     public void afficherClients() {
-        System.out.println(clients);
+        for (int i = 0; i < clients.size(); i++)
+            System.out.println(i + ": " + clients.get(i));
     }
 
 
     private void creerVehicule() {
-        int choix=0;
-        boolean mauvaischoix=true;
-        while(mauvaischoix) {
+        int choix = 0;
+        boolean mauvaischoix = true;
+        while (mauvaischoix) {
 
 
             System.out.println("entrez type de vehicule");
@@ -133,7 +154,7 @@ public class CommandedeVehicule {
             if (choix > 2 || choix < 0)
                 System.out.println("corrigez le choix");
             else
-                mauvaischoix=false;
+                mauvaischoix = false;
 
         }
         creerVehicule(choix);
@@ -165,7 +186,6 @@ public class CommandedeVehicule {
             case 0:
                 System.out.println("cylindree");
                 int cylindree = scanner.nextInt();
-
                 vehicules.add(new Moto(cylindree, fabricant, chevaux, annee, km, prix, neuf));
                 break;
 
@@ -174,21 +194,20 @@ public class CommandedeVehicule {
                 int nombredeportes = scanner.nextInt();
                 System.out.println("nombre de places");
                 int nombredeplaces = scanner.nextInt();
-                vehicules.add(new Voiture (nombredeportes,nombredeplaces,fabricant, chevaux, annee, km, prix, neuf));
+                vehicules.add(new Voiture(nombredeportes, nombredeplaces, fabricant, chevaux, annee, km, prix, neuf));
                 break;
-
-        }
-
-    }
-
-    public void afficherVehicule() {
-        for (int i=0;i<vehicules.size();i++){
-            System.out.println(i+":" +vehicules.e);
+            case 3:
+                System.out.println("tonnes");
+                int tonnes = scanner.nextInt();
+                vehicules.add(new Camion(tonnes, fabricant, chevaux, annee, km, prix, neuf));
+                break;
         }
     }
 
-    public void acheterVehicule(Personne client, Vehicule vehicule) throws Exception {
-        client.acheterVehicule(vehicule);
+    public void afficherVehicule(ArrayList<Vehicule> vehicules) {
+        for (int i = 0; i < vehicules.size(); i++) {
+            System.out.println(i + ": " + vehicules.get(i));
+        }
     }
 }
 
