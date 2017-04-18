@@ -4,6 +4,9 @@
  * - Gerer les cas dans creerVehicule(type)
  * - Creer toString pour Camion et Voiture
  */
+
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -93,9 +96,14 @@ public class CommandedeVehicule {
             case 4:
                 afficherVehicule();
                 break;
+            case 5:
+                try{
+                    // appel à acheterVehicule
+                }catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
         }
     }
-
 
 
     public void creerClient() {
@@ -110,16 +118,26 @@ public class CommandedeVehicule {
         System.out.println(clients);
     }
 
+
     private void creerVehicule() {
-        System.out.println("entrez type de vehicule");
-        System.out.println("0: moto");
-        System.out.println("1: voiture");
-        System.out.println("2: camion");
+        int choix=0;
+        boolean mauvaischoix=true;
+        while(mauvaischoix) {
 
-        //int choix = lireChoix();
-        //creerVehicule(choix);
 
-        creerVehicule(lireChoix());
+            System.out.println("entrez type de vehicule");
+            System.out.println("0: moto");
+            System.out.println("1: voiture");
+            System.out.println("2: camion");
+            choix = lireChoix();
+            if (choix > 2 || choix < 0)
+                System.out.println("corrigez le choix");
+            else
+                mauvaischoix=false;
+
+        }
+        creerVehicule(choix);
+        // creerVehicule(lireChoix());
 
     }
 
@@ -150,12 +168,27 @@ public class CommandedeVehicule {
 
                 vehicules.add(new Moto(cylindree, fabricant, chevaux, annee, km, prix, neuf));
                 break;
+
+            case 1:
+                System.out.println("nombre de portes");
+                int nombredeportes = scanner.nextInt();
+                System.out.println("nombre de places");
+                int nombredeplaces = scanner.nextInt();
+                vehicules.add(new Voiture (nombredeportes,nombredeplaces,fabricant, chevaux, annee, km, prix, neuf));
+                break;
+
         }
 
     }
 
     public void afficherVehicule() {
-        System.out.println(vehicules);
+        for (int i=0;i<vehicules.size();i++){
+            System.out.println(i+":" +vehicules.e);
+        }
+    }
+
+    public void acheterVehicule(Personne client, Vehicule vehicule) throws Exception {
+        client.acheterVehicule(vehicule);
     }
 }
 

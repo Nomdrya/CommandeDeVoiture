@@ -2,7 +2,7 @@
  *
  * @author Raymond
  */
-public class Vehicule {
+public abstract class Vehicule {
     private String fabricant;
     private int chevaux,km,annee;
     private double prix;
