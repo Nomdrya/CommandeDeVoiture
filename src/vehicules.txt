@@ -1,0 +1,9 @@
+Moto,250,Suzuki,300,2010,1000,6000,false
+Moto,500,Kawasaki,200,2007,30000,2000,false
+Moto,500,Honda,200,2007,0,7000,true
+Camion,2,Scania,500,1999,100000,12000,false
+Camion,3,Peugeot,600,2017,0,50000,true
+Voiture,5,5,Volkswagen,250,2013,60000,20000,false
+Voiture,3,4,Citroen,200,2015,30000,20000,false
+Voiture,5,5,Toyota,250,2015,0,34000,true
+Voiture,5,7,Chevrolet,350,1999,100000,10000,false
