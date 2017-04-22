@@ -22,6 +22,7 @@ public class CommandedeVehicule {
 
 
     public static void main(String[] args) {
+
 //        Vehicule berline = new Vehicule("VW", 250, 2016, 5000, 43000);
 //        Vehicule coupe = new Vehicule("BMW", 350, 2015, 35000, 58000);
 //        Vehicule van = new Vehicule("Fiat", 180, 2013);
@@ -52,12 +53,11 @@ public class CommandedeVehicule {
 //        monsieurX.afficherVoitures();
 
         CommandedeVehicule commande = new CommandedeVehicule();
-
+        commande.setVehicules(Gestionnairefichiers.lirevehicule());
         while (commande.continuer) {
             commande.afficherMenu();
             int choix = commande.lireChoix();
             commande.gererChoix(choix);
-
 
         }
     }
@@ -208,6 +208,10 @@ public class CommandedeVehicule {
         for (int i = 0; i < vehicules.size(); i++) {
             System.out.println(i + ": " + vehicules.get(i));
         }
+    }
+
+    public void setVehicules(ArrayList<Vehicule> vehicules) {
+        this.vehicules = vehicules;
     }
 }
 
