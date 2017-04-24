@@ -5,6 +5,7 @@
  * - Creer toString pour Camion et Voiture
  */
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -158,7 +159,11 @@ public class CommandedeVehicule {
 
         }
         creerVehicule(choix);
-        // creerVehicule(lireChoix());
+        try {
+            Gestionnairefichiers.ecrirevehicule(vehicules);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -196,10 +201,12 @@ public class CommandedeVehicule {
                 int nombredeplaces = scanner.nextInt();
                 vehicules.add(new Voiture(nombredeportes, nombredeplaces, fabricant, chevaux, annee, km, prix, neuf));
                 break;
-            case 3:
+            case 2:
                 System.out.println("tonnes");
                 int tonnes = scanner.nextInt();
-                vehicules.add(new Camion(tonnes, fabricant, chevaux, annee, km, prix, neuf));
+                Vehicule v = new Camion(tonnes, fabricant, chevaux, annee, km, prix, neuf);
+                System.out.println(v);
+                vehicules.add(v);
                 break;
         }
     }

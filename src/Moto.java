@@ -6,10 +6,9 @@ public class Moto extends Vehicule {
     private int cylindree;
 
 
-
-    public Moto(int cylindree,String fabricant, int chevaux, int annee, int km, double prix, boolean neuf){
-        super(fabricant,chevaux,annee,km,prix,neuf);
-        this.cylindree=cylindree;
+    public Moto(int cylindree, String fabricant, int chevaux, int annee, int km, double prix, boolean neuf) {
+        super(fabricant, chevaux, annee, km, prix, neuf);
+        this.cylindree = cylindree;
 
     }
 
@@ -20,4 +19,13 @@ public class Moto extends Vehicule {
                 super.toString() +
                 '}';
     }
+
+    @Override
+    public String toString2() {
+        return "Moto," + cylindree + "," +
+                super.toString2();
+
+    }
+
+
 }

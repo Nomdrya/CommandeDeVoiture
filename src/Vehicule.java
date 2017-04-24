@@ -1,10 +1,9 @@
 /**
- *
  * @author Raymond
  */
 public abstract class Vehicule {
     private String fabricant;
-    private int chevaux,km,annee;
+    private int chevaux, km, annee;
     private double prix;
     private Personne proprietaire;
     private boolean neuf;
@@ -17,32 +16,39 @@ public abstract class Vehicule {
         this.proprietaire = proprietaire;
     }
 
-    public Vehicule(String fabricant, int chevaux, int annee, int km, double prix, boolean neuf){
-        this.fabricant=fabricant;
-        this.chevaux=chevaux;
-        this.annee=annee;
-        this.km=km;
-        this.prix=prix;
-        this.neuf=neuf;
+    public Vehicule(String fabricant, int chevaux, int annee, int km, double prix, boolean neuf) {
+        this.fabricant = fabricant;
+        this.chevaux = chevaux;
+        this.annee = annee;
+        this.km = km;
+        this.prix = prix;
+        this.neuf = neuf;
 
     }
-    public double getPrix(){
+
+    public double getPrix() {
         return prix;
     }
 
-    public void setPrix(double nouveauPrix){
-        this.prix=nouveauPrix;
+    public void setPrix(double nouveauPrix) {
+        this.prix = nouveauPrix;
     }
 
     @Override
     public String toString() {
         return
                 "fabricant='" + fabricant + "'" +
-                ", chevaux=" + chevaux +
-                ", km=" + km +
-                ", annee=" + annee +
-                ", prix=" + prix +
-                ", neuf=" + neuf;
+                        ", chevaux=" + chevaux +
+                        ", km=" + km +
+                        ", annee=" + annee +
+                        ", prix=" + prix +
+                        ", neuf=" + neuf;
     }
+
+    public String toString2() {
+        return
+                fabricant + "," + chevaux + "," + annee + "," + km + "," + prix + "," + neuf;
+    }
+
 }
 

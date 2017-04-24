@@ -20,5 +20,9 @@ public class Camion extends Vehicule {
                 super.toString() +
                 '}';
     }
+    @Override
+    public String toString2() {
+        return "Camion," + tonnes + "," +
+                super.toString2();}
 }
 

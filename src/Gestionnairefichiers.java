@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.*;
 import java.util.ArrayList;
 
 /**
@@ -20,6 +17,10 @@ public class Gestionnairefichiers {
             String line;
             while ((line = br.readLine()) != null) {
                 tab = line.split(",");
+                for(String s : tab) {
+                    System.out.println(s);
+                }
+                System.out.println("==================");
                 switch (tab[0]) {
                     case "Moto":
                         vehicules.add(new Moto(
@@ -67,8 +68,12 @@ public class Gestionnairefichiers {
         return vehicules;
     }
 
-    public static void ecrirevehicule(ArrayList<Vehicule> listedevehicules){
-        BufferedWriter bw= new BufferedWriter(new FileWriter("src/vehicules.txt"));
-
+    public static void ecrirevehicule(ArrayList<Vehicule> listedevehicules) throws IOException {
+        BufferedWriter bw = new BufferedWriter(new FileWriter("src/vehicules.txt"));
+        for (Vehicule v : listedevehicules) {
+            bw.write(v.toString2() + '\n');
+            bw.flush();
+        }
+        bw.close();
     }
 }

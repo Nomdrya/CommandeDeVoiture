@@ -8,5 +8,10 @@
 .idea/workspace.xml
 
 .idea/misc.xml
-
+.idea/*
 CommandeDeVoiture.iml
+/._.DS_Store
+/src/._.DS_Store
+/out
+
+.DS_Store

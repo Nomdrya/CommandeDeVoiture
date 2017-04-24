@@ -22,5 +22,10 @@ public class Voiture extends Vehicule {
                 super.toString() +
                 '}';
     }
+    @Override
+    public String toString2() {
+        return "Voiture," + nombredeportes + "," + nombredeplaces + "," +
+                super.toString2();
 
+    }
 }
