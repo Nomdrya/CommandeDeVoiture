@@ -5,9 +5,11 @@
  * - Creer toString pour Camion et Voiture
  */
 
+import com.sun.java.swing.plaf.windows.TMSchema;
+
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.text.DateFormat;
+import java.util.*;
 
 /**
  * @author Raymond
@@ -15,6 +17,8 @@ import java.util.Scanner;
 public class CommandedeVehicule {
 
     private ArrayList<Personne> clients = new ArrayList<>();
+    private ArrayList<Particulier> particuliers = new ArrayList<>();
+    private ArrayList<Garage> garages = new ArrayList<>();
 
     private ArrayList<Vehicule> vehicules = new ArrayList<>();
 
@@ -71,6 +75,7 @@ public class CommandedeVehicule {
         System.out.println("4: afficher vehicule");
         System.out.println("5: acheter vehicule");
         System.out.println("6: vendre vehicule");
+        System.out.println("7: louer vehicule");
 
     }
 
@@ -101,9 +106,9 @@ public class CommandedeVehicule {
             case 5:
                 try {
                     afficherClients();
-                    int numClients=scanner.nextInt();
+                    int numClients = scanner.nextInt();
                     afficherVehicule(this.vehicules);
-                    int numVehicule=scanner.nextInt();
+                    int numVehicule = scanner.nextInt();
                     clients.get(numClients).acheterVehicule(vehicules.get(numVehicule));
 
                     // appel à acheterVehicule
@@ -115,13 +120,45 @@ public class CommandedeVehicule {
             case 6:
                 try {
                     afficherClients();
-                    int numClients=scanner.nextInt();
+                    int numClients = scanner.nextInt();
                     afficherVehicule(clients.get(numClients).getVehicules());
-                    int numVehicule=scanner.nextInt();
+                    int numVehicule = scanner.nextInt();
                     clients.get(numClients).vendreVehicule(numVehicule);
 
                 } catch (Exception e) {
                     e.printStackTrace();
+                }
+            case 7:
+                try {
+                    afficherGarages();
+                    int numGarage = scanner.nextInt();
+
+                    afficherVehicule(garages.get(numGarage).getVehicules());
+                    int numVehicule = scanner.nextInt();
+
+                    afficherParticuliers();
+                    int numParticuliers = scanner.nextInt();
+
+                    // annee debut, mois debut, jour debut
+                    System.out.println("entrez annee, mois, jour du debut de la location");
+
+                    int annee = scanner.nextInt();
+                    int mois = scanner.nextInt();
+                    int jour = scanner.nextInt();
+                    GregorianCalendar debut = new GregorianCalendar(annee, mois, jour);
+
+                    // annee fin, mois fin, jour de fin
+                    System.out.println("entrez annee, mois, jour de fin de la location");
+                    annee = scanner.nextInt();
+                    mois = scanner.nextInt();
+                    jour = scanner.nextInt();
+                    GregorianCalendar fin = new GregorianCalendar(annee, mois, jour);
+                    double forfait = 50 * fin.compareTo(debut) / (1000 * 60 * 60 * 24);
+
+                    garages.get(numGarage).nouvelleLocation(forfait,debut,fin,vehicules.get(numVehicule),particuliers.get(numParticuliers));
+
+                } catch( Exception e) {
+                    System.out.println(e.getMessage());
                 }
         }
     }
@@ -140,6 +177,15 @@ public class CommandedeVehicule {
             System.out.println(i + ": " + clients.get(i));
     }
 
+    public void afficherGarages() {
+        for (int i = 0; i < garages.size(); i++)
+            System.out.println(i + ": " + garages.get(i));
+    }
+
+    public void afficherParticuliers() {
+        for (int i = 0; i < particuliers.size(); i++)
+            System.out.println(i + ": " + particuliers.get(i));
+    }
 
     private void creerVehicule() {
         int choix = 0;

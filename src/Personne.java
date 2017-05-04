@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public class Personne {
     private String nomComplet;
-    private ArrayList<Vehicule> vehicules;
+    protected ArrayList<Vehicule> vehicules;
     private double budget;
 
     public Personne(String nomComplet, double budget) {
