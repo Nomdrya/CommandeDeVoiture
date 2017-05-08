@@ -1,14 +1,5 @@
-/*
- * A faire pour jeudi:
- * - Creer classes Camion, Voiture
- * - Gerer les cas dans creerVehicule(type)
- * - Creer toString pour Camion et Voiture
- */
-
-import com.sun.java.swing.plaf.windows.TMSchema;
 
 import java.io.IOException;
-import java.text.DateFormat;
 import java.util.*;
 
 /**
@@ -28,42 +19,13 @@ public class CommandedeVehicule {
 
     public static void main(String[] args) {
 
-//        Vehicule berline = new Vehicule("VW", 250, 2016, 5000, 43000);
-//        Vehicule coupe = new Vehicule("BMW", 350, 2015, 35000, 58000);
-//        Vehicule van = new Vehicule("Fiat", 180, 2013);
-//        van.setPrix(19000);
-//
-//
-//        Personne monsieurX = new Personne("MrX", 80000);
-//        Personne madameY = new Personne("MsY", 7000000);
-//
-//
-//
-//
-//        try {
-//            monsieurX.acheterVoiture(berline);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        try {
-//            madameY.acheterVoiture(van);
-//            madameY.acheterVoiture(coupe);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        madameY.afficherVoitures();
-//        System.out.println();
-//        monsieurX.afficherVoitures();
-
         CommandedeVehicule commande = new CommandedeVehicule();
         commande.setVehicules(Gestionnairefichiers.lirevehicule());
+
         while (commande.continuer) {
             commande.afficherMenu();
             int choix = commande.lireChoix();
             commande.gererChoix(choix);
-
         }
     }
 
@@ -91,7 +53,11 @@ public class CommandedeVehicule {
                 continuer = false;
                 break;
             case 1:
-                creerClient();
+                try {
+                    creerClient();
+                } catch (Exception e) {
+                    System.out.println("interruption");
+                }
                 break;
 
             case 2:
@@ -153,23 +119,37 @@ public class CommandedeVehicule {
                     mois = scanner.nextInt();
                     jour = scanner.nextInt();
                     GregorianCalendar fin = new GregorianCalendar(annee, mois, jour);
-                    double forfait = 50 * fin.compareTo(debut) / (1000 * 60 * 60 * 24);
+                    double forfait;
+                    System.out.println("Entrez forfait");
+                    forfait = scanner.nextDouble();
+                    garages.get(numGarage).nouvelleLocation(forfait, debut, fin, vehicules.get(numVehicule), particuliers.get(numParticuliers));
 
-                    garages.get(numGarage).nouvelleLocation(forfait,debut,fin,vehicules.get(numVehicule),particuliers.get(numParticuliers));
-
-                } catch( Exception e) {
+                } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
         }
     }
 
 
-    public void creerClient() {
+    public void creerClient() throws Exception {
         System.out.println("entrez le nom");
         String nom = scanner.nextLine();
         System.out.println("budget");
         double budget = scanner.nextDouble();
-        clients.add(new Personne(nom, budget));
+        System.out.println("Garage (1) ou Particulier (2)");
+        int choix = scanner.nextInt();
+        if (choix == 1) {
+            garages.add(new Garage(nom, budget));
+            clients.add(garages.get(garages.size() - 1));
+        } else if (choix == 2) {
+            // Creer Client
+            particuliers.add(new Particulier(nom, budget));
+            clients.add(particuliers.get(particuliers.size() - 1));
+
+        } else {
+            throw new Exception("choix invalide");
+        }
+
     }
 
     public void afficherClients() {

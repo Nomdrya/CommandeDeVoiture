@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 /**
@@ -15,6 +14,7 @@ public class Garage extends Personne {
 
     class Location {
         double forfait;
+        double prixTotal;
         GregorianCalendar debut;
         GregorianCalendar fin;
         Vehicule vehicule;
@@ -26,7 +26,22 @@ public class Garage extends Personne {
             this.fin = fin;
             this.vehicule = vehicule;
             this.client = client;
+            prixTotal = (fin.compareTo(debut) / (1000 * 60 * 60 * 24) + 1) * forfait;
+            System.out.println("Prix total = " + prixTotal);
         }
+
+        @Override
+        public String toString() {
+            return "Location{" +
+                    "forfait=" + forfait +
+                    ", vehicule=" + vehicule +
+                    ", client=" + client +
+                    '}';
+        }
+    }
+
+    ArrayList<Location> getLocations() {
+        return locations;
     }
 
     public void nouvelleLocation(double forfait, GregorianCalendar debut, GregorianCalendar fin, Vehicule vehicule, Particulier client) throws Exception {
@@ -41,4 +56,10 @@ public class Garage extends Personne {
             locations.add(new Location(forfait, debut, fin, vehicule, client));
         } else throw new Exception("ce vehicule n'appartient pas au garage");
     }
+
+    @Override
+    public String toString() {
+        return "Garage{" + super.toString() + "}";
+    }
+
 }

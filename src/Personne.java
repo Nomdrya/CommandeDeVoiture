@@ -9,7 +9,7 @@ import java.util.ArrayList;
 /**
  * @author Raymond
  */
-public class Personne {
+public abstract class Personne {
     private String nomComplet;
     protected ArrayList<Vehicule> vehicules;
     private double budget;
@@ -25,7 +25,7 @@ public class Personne {
     }
 
     public void acheterVehicule(Vehicule vehicule) throws Exception {
-
+        System.out.println(this + " va acheter " + vehicule);
         if (budget < vehicule.getPrix())
             throw new Exception(this + ", budget insuffisant, " + vehicule);
 

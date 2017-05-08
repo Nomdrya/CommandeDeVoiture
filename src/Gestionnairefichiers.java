@@ -1,3 +1,5 @@
+import jdk.nashorn.internal.ir.debug.JSONWriter;
+
 import java.io.*;
 import java.util.ArrayList;
 
@@ -17,10 +19,6 @@ public class Gestionnairefichiers {
             String line;
             while ((line = br.readLine()) != null) {
                 tab = line.split(",");
-                for(String s : tab) {
-                    System.out.println(s);
-                }
-                System.out.println("==================");
                 switch (tab[0]) {
                     case "Moto":
                         vehicules.add(new Moto(
@@ -77,3 +75,4 @@ public class Gestionnairefichiers {
         bw.close();
     }
 }
+

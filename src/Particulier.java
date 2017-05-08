@@ -6,4 +6,10 @@ public class Particulier
     public Particulier(String nomComplet, double budget) {
         super(nomComplet, budget);
     }
+
+    @Override
+    public String toString() {
+        return "Particulier{" + super.toString() + "}";
+    }
+
 }
