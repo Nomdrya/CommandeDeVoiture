@@ -1,0 +1,2 @@
+Garage,Lassalle,20000.0
+Particulier,John,30000.0

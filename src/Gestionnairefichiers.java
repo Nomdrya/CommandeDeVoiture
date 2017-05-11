@@ -1,6 +1,7 @@
 import jdk.nashorn.internal.ir.debug.JSONWriter;
 
 import java.io.*;
+import java.nio.Buffer;
 import java.util.ArrayList;
 
 /**
@@ -8,8 +9,6 @@ import java.util.ArrayList;
  */
 public class Gestionnairefichiers {
     public static ArrayList<Vehicule> lirevehicule() {
-
-
         ArrayList<Vehicule> vehicules = null;
         try {
 
@@ -73,6 +72,38 @@ public class Gestionnairefichiers {
             bw.flush();
         }
         bw.close();
+    }
+
+    public static void ecrireclient(ArrayList<Personne> listedeclients) throws IOException {
+        BufferedWriter bw = new BufferedWriter(new FileWriter("src/clients.txt"));
+        for (Personne p : listedeclients) {
+            bw.write(p.toShortString() + '\n');
+            bw.flush();
+        }
+        bw.close();
+
+    }
+    public static ArrayList<Personne> lireclients() {
+        ArrayList<Personne> clients = null;
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("src/clients.txt"));
+            clients = new ArrayList<>();
+            String[] tab;
+            String line;
+            while ((line = br.readLine()) != null) {
+                tab = line.split(",");
+                String nom = tab[1];
+                double budget=Double.parseDouble(tab[2]);
+                if (tab[0].equals("Garage")){
+                    clients.add(new Garage(nom,budget));
+                } else {
+                    clients.add(new Particulier(nom, budget));
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return clients;
     }
 }
 

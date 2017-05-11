@@ -12,4 +12,9 @@ public class Particulier
         return "Particulier{" + super.toString() + "}";
     }
 
+    @Override
+    public String toShortString() {
+        return "Particulier," + super.toShortString();
+//        return "Particulier," + nomComplet + ","+ budget;
+    }
 }

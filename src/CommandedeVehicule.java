@@ -1,7 +1,6 @@
 
 import java.io.IOException;
 import java.util.*;
-
 /**
  * @author Raymond
  */
@@ -12,16 +11,25 @@ public class CommandedeVehicule {
     private ArrayList<Garage> garages = new ArrayList<>();
 
     private ArrayList<Vehicule> vehicules = new ArrayList<>();
-
     private Scanner scanner = new Scanner(System.in);
     private boolean continuer = true;
 
 
-    public static void main(String[] args) {
+    public void setClients(ArrayList<Personne> clients) {
+        this.clients = clients;
+        for(Personne p: clients) {
+            if(p instanceof Garage) {
+                garages.add((Garage) p);
+            } else {
+                particuliers.add((Particulier) p);
+            }
+        }
+    }
 
+    public static void main(String[] args) {
         CommandedeVehicule commande = new CommandedeVehicule();
         commande.setVehicules(Gestionnairefichiers.lirevehicule());
-
+        commande.setClients(Gestionnairefichiers.lireclients());
         while (commande.continuer) {
             commande.afficherMenu();
             int choix = commande.lireChoix();
@@ -149,7 +157,7 @@ public class CommandedeVehicule {
         } else {
             throw new Exception("choix invalide");
         }
-
+        Gestionnairefichiers.ecrireclient(clients);
     }
 
     public void afficherClients() {

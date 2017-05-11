@@ -62,4 +62,12 @@ public class Garage extends Personne {
         return "Garage{" + super.toString() + "}";
     }
 
+    @Override
+    public String toShortString() {
+
+        return "Garage," + super.toShortString();
+//        return "Garage," + nomComplet + ","+ budget;
+    }
+
+
 }

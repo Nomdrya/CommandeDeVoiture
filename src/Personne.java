@@ -10,9 +10,9 @@ import java.util.ArrayList;
  * @author Raymond
  */
 public abstract class Personne {
-    private String nomComplet;
+    protected String nomComplet;
     protected ArrayList<Vehicule> vehicules;
-    private double budget;
+    protected double budget;
 
     public Personne(String nomComplet, double budget) {
         this.nomComplet = nomComplet;
@@ -37,7 +37,7 @@ public abstract class Personne {
             throw new Exception(vehicule + " a un propriétaire: " + vehicule.getProprietaire().nomComplet);
     }
 
-    public void vendreVehicule(int indice ) throws Exception {
+    public void vendreVehicule(int indice) throws Exception {
         Vehicule vehicule = vehicules.get(indice);
         if (vehicules.contains(vehicule)) {
             vehicule.setProprietaire(null);
@@ -45,17 +45,15 @@ public abstract class Personne {
             vehicules.remove(vehicule);
             budget = budget + vehicule.getPrix();
         } else
-        throw new Exception(this + ", pas proprietaire, " + vehicule);
+            throw new Exception(this + ", pas proprietaire, " + vehicule);
 
     }
 
 
     @Override
     public String toString() {
-        return "Personne{" +
-                "nomComplet='" + nomComplet + '\'' +
-                ", budget=" + budget +
-                '}';
+        return "nomComplet='" + nomComplet + '\'' +
+                        ", budget=" + budget;
     }
 
     public void afficherVehicules() {
@@ -63,6 +61,10 @@ public abstract class Personne {
         for (int i = 0; i < vehicules.size(); i++) {
             System.out.println("- " + vehicules.get(i));
         }
+    }
+    public String toShortString(){
+        return nomComplet +"," +
+                budget;
     }
 
 }
