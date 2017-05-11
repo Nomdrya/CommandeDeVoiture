@@ -84,9 +84,6 @@ public class CommandedeVehicule {
                     afficherVehicule(this.vehicules);
                     int numVehicule = scanner.nextInt();
                     clients.get(numClients).acheterVehicule(vehicules.get(numVehicule));
-
-                    // appel à acheterVehicule
-
                 } catch (Exception e) {
                     System.out.println("Erreur, l'achat n'a pas pu être effectué");
                 }
