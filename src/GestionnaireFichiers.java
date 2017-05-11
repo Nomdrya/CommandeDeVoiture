@@ -1,14 +1,11 @@
-import jdk.nashorn.internal.ir.debug.JSONWriter;
-
 import java.io.*;
-import java.nio.Buffer;
 import java.util.ArrayList;
 
 /**
  * Created by raymo on 4/22/2017.
  */
-public class Gestionnairefichiers {
-    public static ArrayList<Vehicule> lirevehicule() {
+public class GestionnaireFichiers {
+    public static ArrayList<Vehicule> lireVehicules() {
         ArrayList<Vehicule> vehicules = null;
         try {
 
@@ -65,7 +62,7 @@ public class Gestionnairefichiers {
         return vehicules;
     }
 
-    public static void ecrirevehicule(ArrayList<Vehicule> listedevehicules) throws IOException {
+    public static void ecrireVehicules(ArrayList<Vehicule> listedevehicules) throws IOException {
         BufferedWriter bw = new BufferedWriter(new FileWriter("src/vehicules.txt"));
         for (Vehicule v : listedevehicules) {
             bw.write(v.toString2() + '\n');
@@ -74,7 +71,7 @@ public class Gestionnairefichiers {
         bw.close();
     }
 
-    public static void ecrireclient(ArrayList<Personne> listedeclients) throws IOException {
+    public static void ecrireClients(ArrayList<Personne> listedeclients) throws IOException {
         BufferedWriter bw = new BufferedWriter(new FileWriter("src/clients.txt"));
         for (Personne p : listedeclients) {
             bw.write(p.toShortString() + '\n');
@@ -83,7 +80,7 @@ public class Gestionnairefichiers {
         bw.close();
 
     }
-    public static ArrayList<Personne> lireclients() {
+    public static ArrayList<Personne> lireClients() {
         ArrayList<Personne> clients = null;
         try {
             BufferedReader br = new BufferedReader(new FileReader("src/clients.txt"));

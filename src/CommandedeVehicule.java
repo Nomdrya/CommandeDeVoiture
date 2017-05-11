@@ -28,8 +28,8 @@ public class CommandedeVehicule {
 
     public static void main(String[] args) {
         CommandedeVehicule commande = new CommandedeVehicule();
-        commande.setVehicules(Gestionnairefichiers.lirevehicule());
-        commande.setClients(Gestionnairefichiers.lireclients());
+        commande.setVehicules(GestionnaireFichiers.lireVehicules());
+        commande.setClients(GestionnaireFichiers.lireClients());
         while (commande.continuer) {
             commande.afficherMenu();
             int choix = commande.lireChoix();
@@ -157,7 +157,7 @@ public class CommandedeVehicule {
         } else {
             throw new Exception("choix invalide");
         }
-        Gestionnairefichiers.ecrireclient(clients);
+        GestionnaireFichiers.ecrireClients(clients);
     }
 
     public void afficherClients() {
@@ -194,7 +194,7 @@ public class CommandedeVehicule {
         }
         creerVehicule(choix);
         try {
-            Gestionnairefichiers.ecrirevehicule(vehicules);
+            GestionnaireFichiers.ecrireVehicules(vehicules);
         } catch (IOException e) {
             e.printStackTrace();
         }
