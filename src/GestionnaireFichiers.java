@@ -1,3 +1,5 @@
+import com.google.gson.Gson;
+
 import java.io.*;
 import java.util.ArrayList;
 
@@ -102,5 +104,17 @@ public class GestionnaireFichiers {
         }
         return clients;
     }
+
+    public static void ecrireCommandeJson(CommandeDeVoiturePeristant commande) {
+        Gson gson = new Gson();
+        try {
+            FileWriter fw = new FileWriter("commande.json");
+            gson.toJson(commande, fw);
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
 

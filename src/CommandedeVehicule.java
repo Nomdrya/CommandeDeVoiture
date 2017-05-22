@@ -1,6 +1,12 @@
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
+
 /**
  * @author Raymond
  */
@@ -17,8 +23,8 @@ public class CommandedeVehicule {
 
     public void setClients(ArrayList<Personne> clients) {
         this.clients = clients;
-        for(Personne p: clients) {
-            if(p instanceof Garage) {
+        for (Personne p : clients) {
+            if (p instanceof Garage) {
                 garages.add((Garage) p);
             } else {
                 particuliers.add((Particulier) p);
@@ -30,7 +36,12 @@ public class CommandedeVehicule {
         CommandedeVehicule commande = new CommandedeVehicule();
         commande.setVehicules(GestionnaireFichiers.lireVehicules());
         commande.setClients(GestionnaireFichiers.lireClients());
+
+        GestionnaireFichiers.ecrireCommandeJson(new CommandeDeVoiturePeristant(commande.particuliers, commande.garages, commande.vehicules));
+
         while (commande.continuer) {
+
+
             commande.afficherMenu();
             int choix = commande.lireChoix();
             commande.gererChoix(choix);
