@@ -13,8 +13,8 @@ public class CommandeDeVoiturePeristant {
     public CommandeDeVoiturePeristant(ArrayList<Particulier> particuliers, ArrayList<Garage> garages, ArrayList<Vehicule> vehicules) {
         this.particuliers = particuliers;
         this.garages = garages;
-        for(Vehicule v: vehicules) {
-            if(v instanceof Moto) {
+        for (Vehicule v : vehicules) {
+            if (v instanceof Moto) {
                 motos.add((Moto) v);
             } else if (v instanceof Voiture) {
                 voitures.add((Voiture) v);
@@ -22,5 +22,16 @@ public class CommandeDeVoiturePeristant {
                 camions.add((Camion) v);
             }
         }
+    }
+
+    @Override
+    public String toString() {
+        return "CommandeDeVoiturePeristant{" +
+                "voitures=" + voitures +
+                ", camions=" + camions +
+                ", motos=" + motos +
+                ", particuliers=" + particuliers +
+                ", garages=" + garages +
+                '}';
     }
 }

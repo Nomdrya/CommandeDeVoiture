@@ -20,6 +20,23 @@ public class CommandedeVehicule {
     private Scanner scanner = new Scanner(System.in);
     private boolean continuer = true;
 
+    public CommandedeVehicule() {
+    }
+
+    public CommandedeVehicule(CommandeDeVoiturePeristant commandeDeVoiturePeristant) {
+        this.particuliers = commandeDeVoiturePeristant.particuliers;
+        this.garages = commandeDeVoiturePeristant.garages;
+        for (Vehicule v : commandeDeVoiturePeristant.camions) {
+            vehicules.add(v);
+        }
+        for (Vehicule v : commandeDeVoiturePeristant.motos) {
+            vehicules.add(v);
+        }
+        for (Vehicule v : commandeDeVoiturePeristant.voitures) {
+            vehicules.add(v);
+        }
+    }
+
 
     public void setClients(ArrayList<Personne> clients) {
         this.clients = clients;
@@ -33,15 +50,9 @@ public class CommandedeVehicule {
     }
 
     public static void main(String[] args) {
-        CommandedeVehicule commande = new CommandedeVehicule();
-        commande.setVehicules(GestionnaireFichiers.lireVehicules());
-        commande.setClients(GestionnaireFichiers.lireClients());
-
-        GestionnaireFichiers.ecrireCommandeJson(new CommandeDeVoiturePeristant(commande.particuliers, commande.garages, commande.vehicules));
+        CommandedeVehicule commande = new CommandedeVehicule(GestionnaireFichiers.lireCommandeJson());
 
         while (commande.continuer) {
-
-
             commande.afficherMenu();
             int choix = commande.lireChoix();
             commande.gererChoix(choix);
@@ -201,11 +212,6 @@ public class CommandedeVehicule {
 
         }
         creerVehicule(choix);
-        try {
-            GestionnaireFichiers.ecrireVehicules(vehicules);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
     }
 
@@ -234,6 +240,7 @@ public class CommandedeVehicule {
                 System.out.println("cylindree");
                 int cylindree = scanner.nextInt();
                 vehicules.add(new Moto(cylindree, fabricant, chevaux, annee, km, prix, neuf));
+                GestionnaireFichiers.ecrireCommandeJson(new CommandeDeVoiturePeristant(this.particuliers, this.garages, this.vehicules));
                 break;
 
             case 1:

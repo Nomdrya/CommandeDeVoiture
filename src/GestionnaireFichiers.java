@@ -82,6 +82,7 @@ public class GestionnaireFichiers {
         bw.close();
 
     }
+
     public static ArrayList<Personne> lireClients() {
         ArrayList<Personne> clients = null;
         try {
@@ -92,9 +93,9 @@ public class GestionnaireFichiers {
             while ((line = br.readLine()) != null) {
                 tab = line.split(",");
                 String nom = tab[1];
-                double budget=Double.parseDouble(tab[2]);
-                if (tab[0].equals("Garage")){
-                    clients.add(new Garage(nom,budget));
+                double budget = Double.parseDouble(tab[2]);
+                if (tab[0].equals("Garage")) {
+                    clients.add(new Garage(nom, budget));
                 } else {
                     clients.add(new Particulier(nom, budget));
                 }
@@ -114,6 +115,18 @@ public class GestionnaireFichiers {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static CommandeDeVoiturePeristant lireCommandeJson() {
+        Gson gson = new Gson();
+        CommandeDeVoiturePeristant commande = null;
+        try {
+            commande = gson.fromJson(new FileReader("commande.json"), CommandeDeVoiturePeristant.class);
+            System.out.println(commande);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return commande;
     }
 
 }
