@@ -3,14 +3,14 @@ import java.util.ArrayList;
 /**
  * Created by henrik on 5/22/17.
  */
-public class CommandeDeVoiturePeristant {
+public class CommandeDeVoiturePersistant {
     ArrayList<Voiture> voitures = new ArrayList<>();
     ArrayList<Camion> camions = new ArrayList<>();
     ArrayList<Moto> motos = new ArrayList<>();
     ArrayList<Particulier> particuliers;
     ArrayList<Garage> garages;
 
-    public CommandeDeVoiturePeristant(ArrayList<Particulier> particuliers, ArrayList<Garage> garages, ArrayList<Vehicule> vehicules) {
+    public CommandeDeVoiturePersistant(ArrayList<Particulier> particuliers, ArrayList<Garage> garages, ArrayList<Vehicule> vehicules) {
         this.particuliers = particuliers;
         this.garages = garages;
         for(Vehicule v: vehicules) {

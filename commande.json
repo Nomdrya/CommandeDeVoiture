@@ -1,0 +1,117 @@
+{
+  "voitures": [
+    {
+      "nombredeportes": 5,
+      "nombredeplaces": 5,
+      "fabricant": "Volkswagen",
+      "chevaux": 250,
+      "km": 60000,
+      "annee": 2013,
+      "prix": 20000.0,
+      "neuf": false
+    },
+    {
+      "nombredeportes": 3,
+      "nombredeplaces": 4,
+      "fabricant": "Citroen",
+      "chevaux": 200,
+      "km": 30000,
+      "annee": 2015,
+      "prix": 20000.0,
+      "neuf": false
+    },
+    {
+      "nombredeportes": 5,
+      "nombredeplaces": 5,
+      "fabricant": "Toyota",
+      "chevaux": 250,
+      "km": 0,
+      "annee": 2015,
+      "prix": 34000.0,
+      "neuf": true
+    },
+    {
+      "nombredeportes": 5,
+      "nombredeplaces": 7,
+      "fabricant": "Chevrolet",
+      "chevaux": 350,
+      "km": 100000,
+      "annee": 1999,
+      "prix": 10000.0,
+      "neuf": false
+    }
+  ],
+  "camions": [
+    {
+      "tonnes": 2,
+      "fabricant": "Scania",
+      "chevaux": 500,
+      "km": 100000,
+      "annee": 1999,
+      "prix": 12000.0,
+      "neuf": false
+    },
+    {
+      "tonnes": 3,
+      "fabricant": "Peugeot",
+      "chevaux": 600,
+      "km": 0,
+      "annee": 2017,
+      "prix": 50000.0,
+      "neuf": true
+    }
+  ],
+  "motos": [
+    {
+      "cylindree": 250,
+      "fabricant": "Suzuki",
+      "chevaux": 300,
+      "km": 1000,
+      "annee": 2010,
+      "prix": 6000.0,
+      "neuf": false
+    },
+    {
+      "cylindree": 500,
+      "fabricant": "Kawasaki",
+      "chevaux": 200,
+      "km": 30000,
+      "annee": 2007,
+      "prix": 2000.0,
+      "neuf": false
+    },
+    {
+      "cylindree": 500,
+      "fabricant": "Honda",
+      "chevaux": 200,
+      "km": 0,
+      "annee": 2007,
+      "prix": 7000.0,
+      "neuf": true
+    },
+    {
+      "cylindree": 125,
+      "fabricant": "Vespa",
+      "chevaux": 2,
+      "km": 0,
+      "annee": 2000,
+      "prix": 2300.0,
+      "neuf": false
+    }
+  ],
+  "particuliers": [
+    {
+      "nomComplet": "John",
+      "vehicules": [],
+      "budget": 30000.0
+    }
+  ],
+  "garages": [
+    {
+      "locations": [],
+      "nomComplet": "Lassalle",
+      "vehicules": [],
+      "budget": 20000.0
+    }
+  ]
+}

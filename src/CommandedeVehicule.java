@@ -31,14 +31,31 @@ public class CommandedeVehicule {
             }
         }
     }
+    public CommandedeVehicule(CommandeDeVoiturePersistant cvdp){
+        garages = cvdp.garages;
+        particuliers = cvdp.particuliers;
+        for (Camion c: cvdp.camions) {
+            vehicules.add (c);
+        }
+        for (Moto m:cvdp.motos){
+            vehicules.add(m);
+        }
+        for (Voiture v: cvdp.voitures){
+            vehicules.add (v);
+        }
 
+    }
     public static void main(String[] args) {
-        CommandedeVehicule commande = new CommandedeVehicule();
-        commande.setVehicules(GestionnaireFichiers.lireVehicules());
-        commande.setClients(GestionnaireFichiers.lireClients());
+//        CommandedeVehicule commande = new CommandedeVehicule();
+//        commande.setVehicules(GestionnaireFichiers.lireVehicules());
+//        commande.setClients(GestionnaireFichiers.lireClients());
 
-        GestionnaireFichiers.ecrireCommandeJson(new CommandeDeVoiturePeristant(commande.particuliers, commande.garages, commande.vehicules));
+//        GestionnaireFichiers.ecrireCommandeJson(new CommandeDeVoiturePersistant(commande.particuliers, commande.garages, commande.vehicules));
+        CommandeDeVoiturePersistant cvdp = GestionnaireFichiers.lireCommandeJson();
+        CommandedeVehicule commande = new CommandedeVehicule(cvdp);
 
+        // Alternativement:
+        // CommandedeVehicule commane = new CommandedeVehicule(GestionnaireFichiers.lireCommandeJson());
         while (commande.continuer) {
 
 
